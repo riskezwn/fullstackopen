@@ -1,0 +1,25 @@
+title nueva_nota
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over server:
+el servidor redirige de nuevo a /notes
+end note
+server->browser: HTTP 302 redirect https://studies.cs.helsinki.fi/exampleapp/notes
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+
+note over browser:
+el navegador ejecuta el codigo js y solicita 
+al servidor el data.json
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "", date: "", ...}]
+
+note over browser:
+el navegador renderiza los datos del data.json
+end note

@@ -1,0 +1,32 @@
+title nueva_nota_pa
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: spa.js
+
+note over browser:
+el navegador ejecuta el codigo js y solicita 
+al servidor el data.json
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "", date: "", ...}]
+
+note over browser:
+el navegador renderiza los datos del data.json
+end note
+
+note over browser:
+el usuario introduce una nueva nota y envia el formulario
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: {"message":"note created"}
+
+note over browser:
+el navegador ejecuta el codigo redrawNotes() y
+recarga las notas para mostrar la nueva
+end note
